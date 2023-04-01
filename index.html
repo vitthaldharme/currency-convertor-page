@@ -1,0 +1,247 @@
+<html>
+
+<head>
+  <title>Currency Convertor</title>
+  <link href="style.css" rel="stylesheet">
+  <script>
+    function convert() {
+      var amtobj = document.getElementById('amtid');
+      //alert(amtobj);
+      amt = amtobj.value;
+      //alert(amt);
+      var frmobj = document.getElementById('frmid');
+      frm = frmobj.value;
+      //alert(frm);
+      var to_obj = document.getElementById('toid');
+      to = to_obj.value;
+      //alert(to);
+      var h1obj = document.getElementById('one');
+      //alert(h1obj);
+      //x=h1obj.innerHTML;
+      //alert(x);
+      //result=5000;
+      var resobj = document.getElementById('result');
+      //resobj.innerHTML=result;
+
+      //calculation
+      apilink = "https://api.exchangerate-api.com/v4/latest/" + frm
+      //document.write(apilink);
+      /*var res=fetch(apilink);
+      document.write(res);
+      console.log(res);*/
+
+      fetch(apilink).then(
+
+        function (res) {
+          //console.log(res.json());
+          return res.json();//retuen json
+        }
+      ).then(
+
+        function (json) {
+
+          //console.log(json);
+          //console.log(json.rates);
+          dict = json.rates;
+
+          //console.log(dict['AWG']);
+          cr = dict[to];
+          //console.log(cr);
+          res = cr * amt;
+          //alert(res);
+          resobj.innerHTML = res;
+
+        }
+
+      );
+
+    }
+  </script>
+</head>
+
+<body><br>
+  <div>
+    <h1 id="one">Currency Convertor</h1>
+  </div>
+  <br>
+  <hr><br><br>
+  <div class="main">
+    <table align="center" border="2px" hight="400px" width="200px">
+      <br>
+      <tr>
+        <td><strong class="Amount">Amount:</strong></td>
+        <td><input type="number" name="amt" id="amtid" /></td>
+      </tr>
+
+      <tr>
+        <td><strong>From:</strong></td>
+        <td>
+          <select name="from" id="frmid">
+            <option value="INR">INDIA</option>
+            <option value="USD">AMERICA</option>
+            <option value="USD" >America</option>
+            <option value="AFN" >Afganistan</option>
+            <option value="ALL" >Albania</option>
+            <option value="ARS" >Argentina</option>
+            <option value="AUD" >Austrelia</option>
+            <option value="EUR" >Austria</option>
+            <option value="GBP" >British</option>
+            <option value="BSD" >Bahamas</option>
+            <option value="EUR" >Belgium</option>
+            <option value="XOF" >Benin</option>
+            <option value="BZD" >Belize</option>
+            <option value="BMD" >Barmuda</option>
+            <option value="BTN" >Bhutan</option>
+            <option value="BRL" >Brazil</option>
+            <option value="BGN" >Balgaria</option>
+            <option value="BIF" >Burundi</option>
+            <option value="KHR" >Combodia</option>
+            <option value="CNY" >China</option>
+            <option value="CAD" >Canada</option>
+            <option value="CLP" >Chile</option>
+            <option value="COP" >Colombia</option>
+            <option value="KMF" >Comoros</option>
+            <option value="CUP" >Cuba</option>
+            <option value="DKK" >Denmark</option>
+            <option value="USD" >Eucador</option>
+            <option value="EGP" >Egypt</option>
+            <option value="EUR" >Finland</option>
+            <option value="EUR" >France</option>
+            <option value="GEL" >Georgia</option>
+            <option value="EUR" >Germany</option>
+            <option value="EUR" >Greece</option>
+            <option value="DKK" >Greenland</option>
+            <option value="HKD" >Hongkong</option>
+            <option value="HUF" >Hugary</option>
+            <option value="INR" >India</option>
+            <option value="ISK" >Iceland</option>
+            <option value="IDR" >Indonesia</option>
+            <option value="IRR" >Iran</option>
+            <option value="IQD" >Iraq</option>
+            <option value="EUR" >Italy</option>
+            <option value="JPY" >Japan</option>
+            <option value="JOD" >Jordan</option>
+            <option value="KZT" >Kazakhstan</option>
+            <option value="KPW" >Korea</option>
+            <option value="LRD" >Liberia</option>
+            <option value="LYD" >Libia</option>
+            <option value="MOP" >Makau</option>
+            <option value="MYR" >Malaysia</option>
+            <option value="MUR" >Mauritius</option>
+            <option value="MXN" >Mexico</option>
+            <option value="MAD" >Morocco</option>
+            <option value="MMK" >Myanmar</option>
+            <option value="NPR" >Nepal</option>
+            <option value="EUR" >Netherland</option>
+            <option value="NZD" >Newzealand</option>
+            <option value="NOK" >Norway</option>
+            <option value="PKR" >Pakistan</option>
+            <option value="PEN" >Peru</option>
+            <option value="QAR" >Qatar</option>
+            <option value="CHF" >Swiss Franc</option>
+            <option value="EUR" >Spain</option>
+            <option value="SEK" >Swidish</option>
+            <option value="TRY" >Turkey</option>
+            <option value="YER" >Yemen</option>
+            <option value="ZNW" >Zambia</option> 
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>To:</strong></td>
+        <td>
+          <select name="to" id="toid">
+            <option value="INR">INR</option>
+            <option value="USD">USD</option>
+            <option value="USD" >America</option>
+		 <option value="AFN" >Afganistan</option>
+		 <option value="ALL" >Albania</option>
+		 <option value="ARS" >Argentina</option>
+		 <option value="AUD" >Austrelia</option>
+		 <option value="EUR" >Austria</option>
+		 <option value="GBP" >British</option>
+		 <option value="BSD" >Bahamas</option>
+		 <option value="EUR" >Belgium</option>
+		 <option value="XOF" >Benin</option>
+		 <option value="BZD" >Belize</option>
+		 <option value="BMD" >Barmuda</option>
+		 <option value="BTN" >Bhutan</option>
+		 <option value="BRL" >Brazil</option>
+		 <option value="BGN" >Balgaria</option>
+		 <option value="BIF" >Burundi</option>
+		 <option value="KHR" >Combodia</option>
+		 <option value="CNY" >China</option>
+		 <option value="CAD" >Canada</option>
+		 <option value="CLP" >Chile</option>
+		 <option value="COP" >Colombia</option>
+		 <option value="KMF" >Comoros</option>
+		 <option value="CUP" >Cuba</option>
+		 <option value="DKK" >Denmark</option>
+		 <option value="USD" >Eucador</option>
+		 <option value="EGP" >Egypt</option>
+		 <option value="EUR" >Finland</option>
+		 <option value="EUR" >France</option>
+		 <option value="GEL" >Georgia</option>
+		 <option value="EUR" >Germany</option>
+		 <option value="EUR" >Greece</option>
+		 <option value="DKK" >Greenland</option>
+		 <option value="HKD" >Hongkong</option>
+		 <option value="HUF" >Hugary</option>
+		 <option value="INR" >India</option>
+		 <option value="ISK" >Iceland</option>
+		 <option value="IDR" >Indonesia</option>
+		 <option value="IRR" >Iran</option>
+		 <option value="IQD" >Iraq</option>
+		 <option value="EUR" >Italy</option>
+		 <option value="JPY" >Japan</option>
+		 <option value="JOD" >Jordan</option>
+		 <option value="KZT" >Kazakhstan</option>
+		 <option value="KPW" >Korea</option>
+		 <option value="LRD" >Liberia</option>
+		 <option value="LYD" >Libia</option>
+		 <option value="MOP" >Makau</option>
+		 <option value="MYR" >Malaysia</option>
+		 <option value="MUR" >Mauritius</option>
+		 <option value="MXN" >Mexico</option>
+		 <option value="MAD" >Morocco</option>
+		 <option value="MMK" >Myanmar</option>
+		 <option value="NPR" >Nepal</option>
+		 <option value="EUR" >Netherland</option>
+		 <option value="NZD" >Newzealand</option>
+		 <option value="NOK" >Norway</option>
+		 <option value="PKR" >Pakistan</option>
+		 <option value="PEN" >Peru</option>
+		 <option value="QAR" >Qatar</option>
+		 <option value="CHF" >Swiss Franc</option>
+		 <option value="EUR" >Spain</option>
+		 <option value="SEK" >Swidish</option>
+		 <option value="TRY" >Turkey</option>
+		 <option value="YER" >Yemen</option>
+		 <option value="ZNW" >Zambia</option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2" align="center"><button id="btn" onclick="convert()"><strong>Convert</strong></button></td>
+
+
+
+
+
+    </table>
+  </div>
+  <br>
+  <br>
+  <div id="result"></div>
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+</body>
+
+
+</html>
